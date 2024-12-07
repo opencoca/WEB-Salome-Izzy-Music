@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=5"
+      name="viewport"
+    />
+    <link rel="stylesheet" href="https://startr.style/style.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Noto+Emoji:wght@300&display=swap");
+
+      .player button {
+        font-family: "Noto Emoji", sans-serif !important;
+      }
+
+      input[type="checkbox"],
+      input[type="radio"] {
+        position: relative;
+        width: 20px;
+        min-width: auto;
+        height: 20px;
+        display: inline-block;
+        vertical-align: middle;
+        padding: 0 !important;
+        margin: 0px 2px 0px 0px;
+      }
+
+      input[type="checkbox"]:checked::before {
+        display: flex;
+        justify-content: center;
+        margin-top: -0.3rem !important;
+        content: "🔈" !important;
+        color: #fff;
+        font-size: 0.8rem;
+      }
+
+      input[type="checkbox"]:not(:checked)::before {
+        display: flex;
+        justify-content: center;
+        margin-top: -0.3rem !important;
+        content: "🔇" !important;
+        color: #fff;
+        font-size: 0.8rem;
+      }
+    </style>
+    <title>Classic Lofi - Music Player</title>
+    <meta name="description" content="Classic Lofi - Music Player" />
+    <meta name="keywords" content="Classic Lofi, Music Player" />
+    <meta name="author" content="Classic Lofi - Startr LLC" />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="English" />
+    
+  </head>
+  <body
+    style="
+      --bgc:hsla(278deg 100% 54.48% / 66%);
+      --grad:200deg; 
+      --grad-color: hsla(25, 70%, 46%, 0.736);
+      --c:#d72263
+      --bgs: cover;
+      --d: flex;
+      --fd: column;
+      --jc: space-between;
+      --ai: center;
+      --h: 100vh;
+    "
+  >
+    <div>.</div>
+
+    <div
+      aria-label="Music Player"
+      role="region"
+      aria-live="polite"
+      id="music_player"
+      class="music player"
+      style="
+        --bg: rgb(207, 190, 190);
+        --radius: 20px;
+        --shadow-inset: 10;
+        --d: flex;
+        --fd: column;
+        --ai: center;
+        --p: 2rem;
+        --w: 28rem;
+      "
+    >
+      <div
+        aria-label="Music Player Controls"
+        class="player controls"
+        style="--d: flex; --jc: center; --w: 100%; --m: 1rem 0"
+      >
+        <!-- Play/Pause Button -->
+        <button
+          _="
+        on click put 'Loading...' into .track-info
+          then fetch /audioPlayer as html
+            put the result into #music_player
+            then for script in #music_player.querySelectorAll('script') 
+              eval(script.textContent) 
+            end"
+          aria-label="Play/Pause"
+          style="
+            --bg: rgb(255, 255, 255);
+            --border: none;
+            --c: #333;
+            --size: 2rem;
+          "
+        >
+          ▶️
+        </button>
+      </div>
+
+      <div
+        aria-label="Now Playing Info"
+        style="--d: flex; --fd: column; --ai: center"
+      >
+        <span class="track-info" style="--size: 1rem; --c: #333; --weight: bold"
+          >Click Play</span
+        >
+      </div>
+    </div>
+
+    <!-- Audio Control component -->
+    <div
+      style="
+        --v: hidden;
+        --bg: darkgrey;
+        --d: flex;
+        --fd: column;
+        --ai: center;
+        --p: 2rem;
+        --as: start;
+      "
+    ></div>
+    <script src="https://unpkg.com/hyperscript.org@0.9.12" async defer></script>
+  </body>
+</html>

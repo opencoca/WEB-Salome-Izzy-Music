@@ -1,0 +1,99 @@
+<audio id="audioPlayer" controls style="--d: none">
+  Your browser does not support the audio element.
+</audio>
+<div
+  class="player controls"
+  style="--d: flex; --jc: space-between; --w: 100%; --m: 1rem 0"
+>
+  <button
+    aria-label="Previous track"
+    style="--bg: lightgrey; --border: none; --c: #333; --size: 1.5rem"
+    onclick="playPreviousTrack()"
+  >
+    ⏮️
+  </button>
+  <button
+    id="playPauseButton"
+    aria-label="Play/Pause"
+    style="--bg: lightgrey; --border: none; --c: #333; --size: 2rem"
+    onclick="togglePlayPause()"
+  >
+    ▶️
+  </button>
+  <button
+    aria-label="Next track"
+    style="--bg: lightgrey; --border: none; --c: #333; --size: 1.5rem"
+    onclick="playNextTrack()"
+  >
+    ⏭️
+  </button>
+</div>
+<span style="--size: 1rem; --c: #666; --weight: bold">Now Playing</span>
+<div id="trackInfo" class="track-info" style="--size: 0.9rem; --c: #333">
+  Loading...
+</div>
+<script>
+  const audioPlayer = document.getElementById('audioPlayer');
+  const playPauseButton = document.getElementById('playPauseButton'); // Reference to the play/pause button
+  const trackInfoElement = document.getElementById('trackInfo'); // Reference to the track info display element
+  let currentTrack = 0;
+
+    const audioFiles = [
+      {% for file in fileList %}
+          {
+          path: "{{ file.path }}",
+          title: "{{ file.title }}",
+          artist: "{{ file.artist }}"
+          }{% if not loop.last %},{% endif %}
+      {% endfor %}
+      ];
+
+      function updateTrackInfo(trackIndex) {
+          // Update the displayed track information
+          const track = audioFiles[trackIndex];
+          trackInfoElement.textContent = `"${track.title}" by ${track.artist} (${trackIndex + 1} of ${audioFiles.length})`;
+          console.log(`Now playing: ${track.title} by ${track.artist}`);
+        }
+
+        function loadAndPlayTrack(trackIndex) {
+          if (trackIndex >= 0 && trackIndex < audioFiles.length) {
+            const track = audioFiles[trackIndex];
+            audioPlayer.src = track.path;
+            audioPlayer.play().then(() => {
+              currentTrack = trackIndex;
+              updateTrackInfo(trackIndex);
+              playPauseButton.textContent = '⏸️'; // Update to pause emoji when playing
+            }).catch(error => {
+              console.error("Error playing the track:", error);
+              trackInfoElement.textContent = "Loading...."; // Revert to initial message if playback fails
+            });
+          } else {
+            console.log('Track index out of bounds');
+          }
+        }
+
+        function playNextTrack() {
+          const nextTrack = (currentTrack + 1) % audioFiles.length; // Loop back to the first track if at the end
+          loadAndPlayTrack(nextTrack);
+        }
+
+        function playPreviousTrack() {
+          const prevTrack = (currentTrack - 1 + audioFiles.length) % audioFiles.length; // Loop back to the last track if at the beginning
+          loadAndPlayTrack(prevTrack);
+        }
+
+        function togglePlayPause() {
+          if (audioPlayer.paused) {
+            loadAndPlayTrack(currentTrack); // Ensure the current track is loaded and play
+          } else {
+            audioPlayer.pause();
+            playPauseButton.textContent = '▶️'; // Update to play emoji when paused
+          }
+        }
+
+        audioPlayer.addEventListener('ended', playNextTrack); // Automatically move to the next track when one ends
+
+        // Initially set to "Click to Play"
+        trackInfoElement.textContent = "Loading...";
+        loadAndPlayTrack(0); // Load and play the first track
+</script>

@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /wp-admin/
+User-agent: Googlebot
+Disallow: /not-for-google
+User-agent: DuckDuckBot
+Disallow: /not-for-duckduckgo

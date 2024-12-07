@@ -1,0 +1,29 @@
+{# _includes/base.njk #}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My  Site{% endblock %}</title>
+    <!-- Include Startr Style CSS -->
+    <link rel="stylesheet" href="https://startr.style/style.css" />
+</head>
+<body>
+
+<header>
+    <nav>
+        <!-- Navigation links -->
+    </nav>
+</header>
+
+<main>
+     {{ content | safe }}
+</main>
+
+<footer>
+    <!-- Footer content -->
+</footer>
+
+</body>
+</html>
