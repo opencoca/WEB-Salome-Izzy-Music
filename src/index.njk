@@ -1,0 +1,144 @@
+---
+title: Salomé e Isabelle
+profile_image: /salome-plante.webp
+description: |
+  Salomé e Isabelle ambas cresceram na cidade multicultural de Montreal em Quebec.
+  Estudaram musica, uma em canto jazz, cultura musical e educaçao,
+  a outra em violino clássico e educação.
+  Conheceram-se aqui no Faial, lugar que escolheram pra viver,
+  e decidiram aggregator seus gostos e expressões musicais num duo,
+  simples, frágil, mas de sinceridade musical,
+  para com seus varios géneros prediletos.
+keywords: Music, Classic, Jazz
+author: Plante & Somma LDA
+email: kanelle1975@gmail.com
+subject: Inquiry from Salomé e Isabelle Website
+---
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=5"
+      name="viewport" />
+    <link rel="stylesheet" href="https://startr.style/style.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Noto+Emoji:wght@300&display=swap");
+
+      .player button {
+        font-family: "Noto Emoji", sans-serif !important;
+      }
+
+      input[type="checkbox"],
+      input[type="radio"] {
+        position: relative;
+        width: 20px;
+        min-width: auto;
+        height: 20px;
+        display: inline-block;
+        vertical-align: middle;
+        padding: 0 !important;
+        margin: 0px 2px 0px 0px;
+      }
+
+      input[type="checkbox"]:checked::before {
+        display: flex;
+        justify-content: center;
+        margin-top: -0.3rem !important;
+        content: "🔈" !important;
+        color: #fff;
+        font-size: 0.8rem;
+      }
+
+      input[type="checkbox"]:not(:checked)::before {
+        display: flex;
+        justify-content: center;
+        margin-top: -0.3rem !important;
+        content: "🔇" !important;
+        color: #fff;
+        font-size: 0.8rem;
+      }
+    </style>
+    <title>{{ title }} - Startr Music Player</title>
+    <meta name="description" content="{{ title }} - Music Player" />
+    <meta name="keywords" content="{{ keywords }}" />
+    <meta name="author" content="{{ author }}" />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="English" />
+
+  </head>
+
+  <body style="
+  --bg: url(https://image.startr.cloud/1200x800/nature);
+  --bga: fixed;
+  --bgs: cover;
+  --d: flex;
+  --fd: column;
+  --ai: center;
+  --jc: center;
+  --h: 100vh;
+  --w: 100vw;
+    ">
+      <div style="--z: 1000;--bgc:rgba(255, 255, 255, 0.8);--: 4;--levitate: 6;--p:2em;--radius:1em;--maxw:30em;/* --mt: auto; */--ta:center;--d:flex;--fd:column;--ai:center;--jc:center;">
+        <img src="{{ profile_image }}" height="120" width="120" alt="Profile image Plante &amp; Somma LDA" style="--radius:50%; --mb:1em; --oe:white solid 0.4em; --shadow:18">
+        <h2 style="--c:oklch(0.0 0.0 0.0); --size:2em; --weight:700;">{{ title }}</h2>
+        <p style="--c:oklch(0.0 0.0 0.2); --size:1em; --lh:1.5em; --ta:justify; hyphens: auto">
+          {{ description }}
+        </p>
+        <a href="mailto:{{ email }}?subject={{ subject }}">
+          <button style="--bgc:oklch(0.6 0.1 0.4); --c:white; --radius:0.5em; --p:0.8em 1.5em; --mt:1em; --border:none;">
+            <img src="/Email_withcircle.svg" alt="Contact Us" style="--w:4em; --mb:-0.6em;">
+          </button>
+        </a>
+
+      </div>
+      <br>
+    <div aria-label="Music Player" role="region" aria-live="polite" id="music_player" class="music player" style="
+        --bgc:rgba(255, 255, 255, 0.8);
+        --radius: 1em;
+        --levitate: 6;
+        --d: flex;
+        --fd: column;
+        --ai: center;
+        --p: 2rem;
+        --w: 28rem;
+      ">
+      <div aria-label="Music Player Controls" class="player controls"
+        style="--d: flex; --jc: center; --w: 100%; --m: 1rem 0">
+        <!-- Play/Pause Button -->
+        <button _="
+        on click put 'Loading...' into .track-info
+          then fetch /audioPlayer as html
+            put the result into #music_player
+            then for script in #music_player.querySelectorAll('script') 
+              eval(script.textContent) 
+            end" aria-label="Play/Pause" style="
+            --bg: rgb(255, 255, 255);
+            --border: none;
+            --c: #333;
+            --size: 2rem;
+          ">
+          ▶️
+        </button>
+      </div>
+
+      <div aria-label="Now Playing Info" style="--d: flex; --fd: column; --ai: center">
+        <span class="track-info" style="--size: 1rem; --c: #333; --weight: bold">Click Play</span>
+      </div>
+    </div>
+
+    <!-- Audio Control component -->
+    <div style="
+        --v: hidden;
+        --bg: darkgrey;
+        --d: flex;
+        --fd: column;
+        --ai: center;
+        --p: 2rem;
+        --as: start;
+      "></div>
+    <script src="https://unpkg.com/hyperscript.org@0.9.12" async defer></script>
+  </body>
+
+</html>
