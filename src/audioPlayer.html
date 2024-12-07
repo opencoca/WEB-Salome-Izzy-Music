@@ -29,7 +29,7 @@
   </button>
 </div>
 <span style="--size: 1rem; --c: #666; --weight: bold">Now Playing</span>
-<div id="trackInfo" class="track-info" style="--size: 0.9rem; --c: #333">
+<div id="trackInfo" class="track-info" style="--size: 0.9rem; --c: #333; --ta:center">
   Loading...
 </div>
 <script>
@@ -51,7 +51,7 @@
       function updateTrackInfo(trackIndex) {
           // Update the displayed track information
           const track = audioFiles[trackIndex];
-          trackInfoElement.textContent = `"${track.title}" by ${track.artist} (${trackIndex + 1} of ${audioFiles.length})`;
+          trackInfoElement.innerHTML = `"${track.title}" <br> by ${track.artist} (${trackIndex + 1} of ${audioFiles.length})`;
           console.log(`Now playing: ${track.title} by ${track.artist}`);
         }
 
