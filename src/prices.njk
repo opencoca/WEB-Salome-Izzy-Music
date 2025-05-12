@@ -85,15 +85,18 @@ services:
 
       body {
         font-family: "Playpen Sans", sans-serif;
+        /* subtle linen texture */
+        background-image: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1)), url("https://assets.codepen.io/170881/linen.jpg");
+        background-size: 50%;
       }
 
       {
-        font-family: "Westonia", "Brush Script MT",;
+        font-family: "Westonia", "Brush Script MT", cursive;
       }
     </style>
   </head>
 
-  <body style="--ff: sans-serif;;  --bgc:oklch(0.98 0.01 120); --c:oklch(0.25 0.02 10); --p:2em; --d:flex; --g:1em; --maxw:60rem; --m:auto;">
+  <body style="--ff: sans-serif;;  --bgc:oklch(0.98 0.01 120); --c:oklch(0.25 0.02 10); --p:2em; --d:flex; --g:1em; --maxw:60rem; --m:auto; --minh:100dvh;">
     <img alt="Watercolor floral design" src="https://assets.codepen.io/170881/flowers_wetercolor.png" style="--d:none; --d-md:bloc;--radius:12px; --w-sm:40rem; --rotate: 6deg;--ml: -30%;--mr: -30%;">
 
     <our-content style="--m:auto">
