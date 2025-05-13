@@ -68,6 +68,7 @@ services:
 <!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Include Startr Style CSS -->
     <link rel="stylesheet" href="https://startr.style/style.css">
     <style>
@@ -99,13 +100,12 @@ services:
   <body style="--ff: sans-serif;;  --bgc:oklch(0.98 0.01 120); --c:oklch(0.25 0.02 10); --p:2em; --d:flex; --g:1em; --maxw:60rem; --m:auto; --minh:100dvh;">
     <img alt="Watercolor floral design" src="https://assets.codepen.io/170881/flowers_wetercolor.png" style="--d:none; --d-md:bloc;--radius:12px; --w-sm:40rem; --rotate: 6deg;--ml: -30%;--mr: -30%;">
 
-    <our-content style="--m:auto">
+    <our-content style="--m:auto; --z:1000;">
       <section style="--d:flex; --fd:column; --ai:center; text-align:center; gap:1em; --maxw:40rem; margin:0 auto;">
         <h1 style="--ff: 'Westonia', 'Brush Script MT',cursive; --size:5em; --c:{{ headingColor }};">{{ mainHeading }}</h1>
         <hr style="--w:{{ dividerWidth }}; --m:1em auto;">
       </section>
-      <section style="--d:flex; --fd:column; --ai:center; text-align:center; gap:1em; --maxw:30rem; margin:0 auto;">
-        <!--<p style="--size:1.5em; --c:{{ textColor }};">{{ description }}</p>-->
+      <section style="--d:flex; --fd:column; --ai:center; text-align:center; gap:1em; --maxw:30rem; margin:0 auto; --ts:0 0 1em var(--white);;">
         <p style="--c:{{ textColor }}; --ta:left">
           {{ description }}
         </p>
@@ -115,17 +115,17 @@ services:
           {% endfor %}
         </p>
 
-      {% for serviceSection in services %}
-        <section style="--maxw:40rem; margin:2em auto; --p:1em;">
-          <h2 style="--ff: 'Westonia', 'Brush Script MT',cursive; --size:3em; --c:{{ sectionHeadingColor }}; text-align:right;">{{ serviceSection.section }}</h2>
-          <div style="--d:grid; --gtc:1fr auto; --size:1em; --ai:center;">
-            {% for item in serviceSection.items %}
-              <div style="--p:0 1em 0 0;">{{ item.name }}</div>
-              <div style="--p:.3em 0 0 0; --pl:1em; --bl:2px solid {{ borderColor }}; --ta:right; --weight:bold;">{{ item.price }}</div>
-            {% endfor %}
-          </div>
-        </section>
-      {% endfor %}
-    </our-content>
-  </body>
-</html>
+        {% for serviceSection in services %}
+          <section style="--maxw:40rem; margin:2em auto; --p:1em;">
+            <h2 style="--ff: 'Westonia', 'Brush Script MT',cursive; --size:3em; --c:{{ sectionHeadingColor }}; text-align:right;">{{ serviceSection.section }}</h2>
+            <div style="--d:grid; --gtc:1fr auto; --size:1em; --ai:center;">
+              {% for item in serviceSection.items %}
+                <div style="--p:0 1em 0 0;">{{ item.name }}</div>
+                <div style="--p:.3em 0 0 0; --pl:1em; --bl:2px solid {{ borderColor }}; --ta:right; --weight:bold;">{{ item.price }}</div>
+              {% endfor %}
+            </div>
+          </section>
+        {% endfor %}
+      </our-content>
+    </body>
+  </html>
